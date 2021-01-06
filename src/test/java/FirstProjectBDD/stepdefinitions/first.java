@@ -1,16 +1,17 @@
-package FirstProjectBDD;
+package FirstProjectBDD.stepdefinitions;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class first {
     private boolean CookieBelly;
     private boolean belly;
 
-    @Given("^I have (\\d+) cookies in my belly$")
+    @Given("I have {int} cookies in my belly")
     public void i_have_cookies_in_my_belly(int cookies) {
+        System.out.println("Given I have " + cookies + " cookies in my belly");
         if (cookies > 0)
         {
             CookieBelly=true;
@@ -18,10 +19,11 @@ public class first {
         else {
             CookieBelly=false;
             throw new PendingException();
-            }
+        }
     }
-    @When("^I wait (\\d+) hour$")
+    @When("I wait {int} hour")
     public void i_wait_hour(int hour) {
+        System.out.println("I wait " + hour + " hour");
         if (hour < 0)
         {
             belly = false;
@@ -31,13 +33,15 @@ public class first {
         }
 
     }
-    @Then("^my belly should growl$")
+
+    @Then("my belly should growl")
     public void my_belly_should_growl() {
+        System.out.println("my belly should growl");
         if(CookieBelly && belly)
         {
 
         }else{
             throw new PendingException();
-            }
+        }
     }
 }
